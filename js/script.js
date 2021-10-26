@@ -1,6 +1,7 @@
 const pokemonList = [
+
 { name: 'Weedle',
-  height: 1,
+  height: 1.00,
   types: ['bug', 'poison'] },
 
 { name: 'Jigglypuff',
@@ -10,4 +11,5 @@ const pokemonList = [
 { name: 'Dragonite',
   height: 7.03,
   types: ['dragon', 'flying'] }
-];
+]
+console.log(pokemonList);
