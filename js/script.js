@@ -1,34 +1,87 @@
-const pokemonList = [
+// wrapped pokemonList array in an IIFE to avoid accessing global state
+(function () {
 
-{ name: 'Weedle',
-  height: 1,
-  types: ['bug', 'poison'] },
-
-{ name: 'Jigglypuff',
-  height: 1.08,
-  types: ['normal', 'fairy'] },
-
-{ name: 'Dragonite',
-  height: 7.03,
-  types: ['dragon', 'flying'] },
-
-{ name: 'Ivysaur',
-  height: 3.03,
-  types: ['grass', 'poison'] },
-
-{ name: 'Nidoqueen',
-  height: 4.03,
-  types: ['poison', 'ground'] }
+let pokemonList =
+[
+  {
+    name: 'Weedle',
+    height: 1,
+    types: ['bug', 'poison']
+  },
+  {
+    name: 'Jigglypuff',
+    height: 1.08,
+    types: ['normal', 'fairy']
+  },
+  {
+    name: 'Dragonite',
+    height: 7.03,
+    types: ['dragon', 'flying']
+   },
+  {
+    name: 'Ivysaur',
+    height: 3.03,
+    types: ['grass', 'poison']
+  },
+  {
+    name: 'Nidoqueen',
+    height: 4.03,
+    types: ['poison', 'ground']
+  }
 ]
 
-console.log(pokemonList);
+pokemonList.forEach(function(pokemon) {
+  document.write(pokemon.name + " is " + pokemon.height + " ft. tall ");
+});
+})();
+
+
+let pokemonRepository = (function () {
+  let pokemonList = [];
+
+  function add(pokemon) {
+    pokemonList.push(pokemon);
+  }
+
+  function getAll() {
+    return pokemonList;
+  }
+
+  return {
+    add: add,
+    getAll: getAll
+  };
+})();
+
+
 
 //for loop used to lists the name and height of each pokemon in array
-//using <br> until I figure out how to make it a proper list
-for (let i = 0; i < pokemonList.length; i++){
-  document.write(pokemonList[i].name + " (height: " + pokemonList[i].height +" ft)" + '<br>');
-  //conditional within loop to determine tallest pokemon
-  if (pokemonList[i].height > 5) {
-    document.write(" - Wow, that's huge!" + '<br>');
-  }
-}
+// for (let i = 0; i < pokemonList.length; i++){
+//   if (pokemonList[i].height < 5) {
+//   document.write('<p>' + pokemonList[i].name + " (height: " + pokemonList[i].height +" ft)" + '</p>');
+// }
+//   //conditional within loop to determine tallest pokemon
+//   if (pokemonList[i].height > 5) {
+//     document.write('<p>' + pokemonList[i].name + " (height: " + pokemonList[i].height +" ft)" + " - Wow, that's huge!" + '</p>');
+//   }
+// }
+//
+// let pokemonList2 = [
+//   // different set of pokemon objects
+// ];
+//
+// function printArrayDetails(pokemonList){
+//   for (let i = 0; i < pokemonList.length; i++){
+//     // document.write('<p>' + PokemonList[i].name + '</p>');
+//     // console.log(pokemonList[i].name);
+//   }
+// }
+//
+// function printArrayDetails(pokemonList2){
+//   for (let i = 0; i < pokemonList2.length; i++){
+//     // document.write("<p>" + pokemonList2[i].name + "</p>");
+//     // console.log(pokemonList2[i].name);
+//   }
+// }
+//
+// // printArrayDetails(pokemonList); // executes the function using 'pokemonList' as its input - argument
