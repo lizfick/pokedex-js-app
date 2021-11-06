@@ -1,43 +1,31 @@
-// wrapped pokemonList array in an IIFE to avoid accessing global state
-(function () {
-
-let pokemonList =
-[
-  {
-    name: 'Weedle',
-    height: 1,
-    types: ['bug', 'poison']
-  },
-  {
-    name: 'Jigglypuff',
-    height: 1.08,
-    types: ['normal', 'fairy']
-  },
-  {
-    name: 'Dragonite',
-    height: 7.03,
-    types: ['dragon', 'flying']
-   },
-  {
-    name: 'Ivysaur',
-    height: 3.03,
-    types: ['grass', 'poison']
-  },
-  {
-    name: 'Nidoqueen',
-    height: 4.03,
-    types: ['poison', 'ground']
-  }
-]
-
-pokemonList.forEach(function(pokemon) {
-  document.write(pokemon.name + " is " + pokemon.height + " ft. tall ");
-});
-})();
-
-
 let pokemonRepository = (function () {
-  let pokemonList = [];
+  let pokemonList = [
+      {
+        name: 'Weedle',
+        height: 1,
+        types: ['bug', 'poison']
+      },
+      {
+        name: 'Jigglypuff',
+        height: 1.08,
+        types: ['normal', 'fairy']
+      },
+      {
+        name: 'Dragonite',
+        height: 7.03,
+        types: ['dragon', 'flying']
+       },
+      {
+        name: 'Ivysaur',
+        height: 3.03,
+        types: ['grass', 'poison']
+      },
+      {
+        name: 'Nidoqueen',
+        height: 4.03,
+        types: ['poison', 'ground']
+      }
+  ];
 
   function add(pokemon) {
     pokemonList.push(pokemon);
@@ -53,7 +41,9 @@ let pokemonRepository = (function () {
   };
 })();
 
-
+pokemonRepository.getAll().forEach(function(pokemon) {
+  document.write('<p>' + pokemon.name + " (height: " + pokemon.height +" ft)" + '</p>');
+});
 
 //for loop used to lists the name and height of each pokemon in array
 // for (let i = 0; i < pokemonList.length; i++){
