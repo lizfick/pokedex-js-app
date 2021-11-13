@@ -28,50 +28,52 @@ let pokemonRepository = (function () {
   ];
 
   function add(pokemon) {
-    pokemonList.push(pokemon);
+    if (
+      typeof pokemon === "object" &&
+      "name" in pokemon &&
+      "height" in pokemon &&
+      "types" in pokemon
+    ) {
+      pokemonList.push(pokemon);
+    } else {
+      console.log("pokemon is not correct");
+    }
   }
 
   function getAll() {
     return pokemonList;
   }
 
+  function showDetails (pokemon) {
+    console.log(pokemon.name);
+  }
+
+  function addListItem(pokemon){
+    let pokemonList = document.querySelector(".pokemon-list");
+    let listpokemon = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("button-class");
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);
+    button.addEventListener("click", function(event) {
+      showDetails(pokemon);
+    });
+  }
+
   return {
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    addListItem: addListItem
+    showDetails: shoeDetails
   };
 })();
 
-pokemonRepository.getAll().forEach(function(pokemon) {
-  document.write('<p>' + pokemon.name + " (height: " + pokemon.height +" ft)" + '</p>');
-});
+console.log(pokemonRepository.getAll());
+pokemonRepository.add({ name: "Pikachu", height: 0.3, types: ["electric"] });
 
-//for loop used to lists the name and height of each pokemon in array
-// for (let i = 0; i < pokemonList.length; i++){
-//   if (pokemonList[i].height < 5) {
-//   document.write('<p>' + pokemonList[i].name + " (height: " + pokemonList[i].height +" ft)" + '</p>');
-// }
-//   //conditional within loop to determine tallest pokemon
-//   if (pokemonList[i].height > 5) {
-//     document.write('<p>' + pokemonList[i].name + " (height: " + pokemonList[i].height +" ft)" + " - Wow, that's huge!" + '</p>');
-//   }
-// }
-//
-// let pokemonList2 = [
-//   // different set of pokemon objects
-// ];
-//
-// function printArrayDetails(pokemonList){
-//   for (let i = 0; i < pokemonList.length; i++){
-//     // document.write('<p>' + PokemonList[i].name + '</p>');
-//     // console.log(pokemonList[i].name);
-//   }
-// }
-//
-// function printArrayDetails(pokemonList2){
-//   for (let i = 0; i < pokemonList2.length; i++){
-//     // document.write("<p>" + pokemonList2[i].name + "</p>");
-//     // console.log(pokemonList2[i].name);
-//   }
-// }
-//
-// // printArrayDetails(pokemonList); // executes the function using 'pokemonList' as its input - argument
+console.log(pokemonRepository.getAll());
+
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
+});
