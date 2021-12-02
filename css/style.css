@@ -1,3 +1,36 @@
+:root {
+  --background-color: #4caf50;
+}
+
+html,
+
+body {
+  font-family: Verdana, sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: 500;
+  text-align: center;
+}
+
+h2, .modal h2 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+p, .modal p {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+  padding: 0rem;
+}
+
 .button-class {
   background-color: #4caf50;
   border: none;
@@ -16,11 +49,6 @@
   border: 2px solid #4caf50;
 }
 
-html,
-body {
-  font-family: Arial, sans-serif;
-}
-
 #modal-container {
   position: fixed;
   padding: 20px;
@@ -34,17 +62,17 @@ body {
   /* to show it above other content */
   z-index: 999;
 
-  /* to allow scrolling if the screen is not high enough*/
+  /* to allow scrolling if the screen is not high enough */
   overflow: auto;
 
-  /* this is used to center the modal */
+  /*this is used to center the modal */
   display: grid;
   text-align: center;
 }
 
 .modal {
   margin: auto;
-  display: inline-block;
+  display: incline-block;
   box-sizing: border-box;
   background: #fff;
   padding: 15px;
@@ -75,6 +103,6 @@ body {
 }
 
 #modal-container.is-visible {
-  /* CSS for modal container - add your own desired CSS styles here */
+  /* add CSS styles here */
   display: block;
 }
