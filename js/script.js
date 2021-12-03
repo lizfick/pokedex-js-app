@@ -1,7 +1,7 @@
-let pokemonRepository = (function () {
-  let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-  let modalContainer = document.querySelector('#modal-container');
+const pokemonRepository = (function () {
+  const pokemonList = [];
+  const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  const modalContainer = document.querySelector('#modal-container');
 
   function add(pokemon) {
     if (
@@ -19,9 +19,9 @@ let pokemonRepository = (function () {
   }
 
   function addListItem(pokemon) {
-    let pokemonList = document.querySelector(".pokemon-list");
-    let listpokemon = document.createElement("li");
-    let button = document.createElement("button");
+    const pokemonList = document.querySelector(".pokemon-list");
+    const listpokemon = document.createElement("li");
+    const button = document.createElement("button");
     button.innerText = pokemon.name;
     button.classList.add("button-class");
     listpokemon.appendChild(button);
@@ -36,7 +36,7 @@ let pokemonRepository = (function () {
       return response.json();
     }).then(function (json) {
       json.results.forEach(function (item) {
-        let pokemon = {
+        const pokemon = {
           name: item.name,
           detailsUrl: item.url
         };
@@ -49,7 +49,7 @@ let pokemonRepository = (function () {
   }
 
   function loadDetails(item) {
-    let url = item.detailsUrl;
+    const url = item.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
@@ -71,23 +71,23 @@ let pokemonRepository = (function () {
     console.log('hello')
     modalContainer.innerHTML = '';
 
-    let modal = document.createElement('div');
+    const modal = document.createElement('div');
     modal.classList.add('modal');
 
-    let closeButtonElement = document.createElement('button');
+    const closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
     closeButtonElement.innerText = 'Close';
     closeButtonElement.addEventListener('click', hideModal);
 
-    let titleElement = document.createElement('h1');
+    const titleElement = document.createElement('h1');
     titleElement.innerText = pokemon.name;
 
-    let contentElement = document.createElement('p');
+    const contentElement = document.createElement('p');
     contentElement.innerText = 'Height: ' + pokemon.height;
 
-    let imageElement = document.createElement('img');
+    const imageElement = document.createElement('img');
     imageElement.src = pokemon.imageUrl;
-    
+
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
     modal.appendChild(contentElement);
@@ -110,7 +110,7 @@ let pokemonRepository = (function () {
 
   modalContainer.addEventListener('click', (e) => {
 // also triggered when clicking INSIDE the modal - close if the user clicks directly on the overlay
-    let target = e.target;
+    const target = e.target;
     if (target === modalContainer) {
       hideModal();
     }
