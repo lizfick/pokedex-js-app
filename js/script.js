@@ -68,33 +68,33 @@ const pokemonRepository = (function () {
   }
 
   function showModal(pokemon) {
-    console.log('hello')
-    modalContainer.innerHTML = '';
+    const modalBody = $('.modal-body');
+    const modalTitle = $('.modal-title');
+    const modalHeader = $('.modal-header');
+    //clears existing content when new modal opened
+    modalTitle.empty();
+    modalBody.empty();
 
-    const modal = document.createElement('div');
-    modal.classList.add('modal');
+    //element for name in modal
+    const nameElement = $('<h1>' + pokemon.name + '</h1>');
+    //element for img in modal
+    const imageElement = $('<img class="modal-img" style="width:50%">');
+    imageElement.attr('src', pokemon.imageUrlFront);
 
-    const closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'Close';
-    closeButtonElement.addEventListener('click', hideModal);
+    //element for height in modal
+    const heightElement = $('<p>' + 'Height : ' + pokemon.height + ' m' + '</p>');
+    //element for weight in modal
+    const weightElement = $('<p>' + 'Weight : ' + pokemon.weight + ' kg' + '</p>');
+    //element for type in modal
+    const typeElement = $('<p>' + 'Types : ' + pokemon.types + '</p>');
 
-    const titleElement = document.createElement('h1');
-    titleElement.innerText = pokemon.name;
+    modalTitle.append(nameElement);
+    modalBody.append(imageElement);
+    modalBody.append(heightElement);
+    modalBody.append(weightElement);
+    modalBody.append(typeElement);
 
-    const contentElement = document.createElement('p');
-    contentElement.innerText = 'Height: ' + pokemon.height;
-
-    const imageElement = document.createElement('img');
-    imageElement.src = pokemon.imageUrl;
-
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
-    modal.appendChild(imageElement);
-    modalContainer.appendChild(modal);
-
-    modalContainer.classList.add('is-visible');
+    $('#exampleModalLive').modal();
   }
 
   function hideModal() {
