@@ -23,7 +23,7 @@ const pokemonRepository = (function () {
     const listpokemon = document.createElement("li");
     const button = document.createElement("button");
     button.innerText = pokemon.name;
-    button.classList.add("button-class");
+    button.classList.add('btn', 'btn-danger', 'btn-lg', 'button-class');
     listpokemon.appendChild(button);
     pokemonList.appendChild(listpokemon);
     button.addEventListener("click", function(event) {
@@ -37,11 +37,10 @@ const pokemonRepository = (function () {
     }).then(function (json) {
       json.results.forEach(function (item) {
         const pokemon = {
-          name: item.name,
+          name: item.name.substring(0,1).toUpperCase() + item.name.substring(1),
           detailsUrl: item.url
         };
         add(pokemon);
-        console.log(pokemon);
       });
     }).catch(function (e) {
       console.error(e);
@@ -54,6 +53,7 @@ const pokemonRepository = (function () {
       return response.json();
     }).then(function (details) {
       item.imageUrl = details.sprites.front_default;
+      item.weight = details.weight;
       item.height = details.height;
       item.types = details.types;
     }).catch(function (e) {
@@ -70,7 +70,7 @@ const pokemonRepository = (function () {
   function showModal(pokemon) {
     const modalBody = $('.modal-body');
     const modalTitle = $('.modal-title');
-    const modalHeader = $('.modal-header');
+    // const modalHeader = $('.modal-header');
     //clears existing content when new modal opened
     modalTitle.empty();
     modalBody.empty();
@@ -79,20 +79,18 @@ const pokemonRepository = (function () {
     const nameElement = $('<h1>' + pokemon.name + '</h1>');
     //element for img in modal
     const imageElement = $('<img class="modal-img" style="width:50%">');
-    imageElement.attr('src', pokemon.imageUrlFront);
+    imageElement.attr('src', pokemon.imageUrl);
 
     //element for height in modal
     const heightElement = $('<p>' + 'Height : ' + pokemon.height + ' m' + '</p>');
     //element for weight in modal
     const weightElement = $('<p>' + 'Weight : ' + pokemon.weight + ' kg' + '</p>');
-    //element for type in modal
-    const typeElement = $('<p>' + 'Types : ' + pokemon.types + '</p>');
+
 
     modalTitle.append(nameElement);
     modalBody.append(imageElement);
     modalBody.append(heightElement);
     modalBody.append(weightElement);
-    modalBody.append(typeElement);
 
     $('#exampleModalLive').modal();
   }

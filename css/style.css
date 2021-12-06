@@ -1,48 +1,26 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Open-sans, sans-serif;
   background-color: #f5d120;
   padding: 0px;
   margin: 0px;
 }
 
-.navbar {
-  background-color: #ffffff;
-}
-
-
 .button-class {
-  background-color: #;
-  border: none;
-  color: white;
   padding: 16px 32px;
-  text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  background-color: white;
-  color: black;
+  width: 150px
 }
 
-.modal h1 {
+/* .modal h1 {
   color: #;
   text-align: center;
-}
+} */
 
-.modal p {
+/* .modal p {
   color: #;
-}
-
-h1{
-  font-size: 30px;
-  color: #fff;
-  background-color: #;
-  font-family: ;
-  text-align: center;
-}
+} *
 
 #modal-container {
   position: fixed;
@@ -65,7 +43,7 @@ h1{
   text-align: center;
 }
 
-.modal {
+/* .modal {
   margin: auto;
   display: inline-block;
   box-sizing: border-box;
@@ -74,9 +52,9 @@ h1{
   width: 100%;
   max-width: 700px;
   text-align: left;
-}
+} */
 
-.modal-close {
+/* .modal-close {
   float: right;
   -webkit-appearance: none;
   border: 0;
@@ -91,7 +69,7 @@ h1{
 
 .modal p {
   margin-bottom: 0;
-}
+} */
 
 #modal-container {
   display: none;
@@ -103,6 +81,7 @@ h1{
 }
 
 .pokemon-list {
+  padding-top: 25px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
