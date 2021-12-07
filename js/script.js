@@ -1,5 +1,5 @@
 const pokemonRepository = (function () {
-  const pokemonList = [];
+  let pokemonList = [];
   const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   const modalContainer = document.querySelector('#modal-container');
 
@@ -47,6 +47,19 @@ const pokemonRepository = (function () {
     })
   }
 
+  document.querySelector('#textbox').addEventListener('input', e => {
+  let searchTerm = e.target.value;
+  let buttons = document.querySelectorAll('.btn');
+
+  for (let i = 0; i < buttons.length ; i ++) {
+    if (buttons[i].innerText.toLowerCase().includes(searchTerm.toLowerCase())) {
+      buttons[i].style.display = 'inline-block';
+      } else {
+      buttons[i].style.display = 'none';
+    }
+  }
+})
+
   function loadDetails(item) {
     const url = item.detailsUrl;
     return fetch(url).then(function (response) {
@@ -78,8 +91,9 @@ const pokemonRepository = (function () {
     //element for name in modal
     const nameElement = $('<h1>' + pokemon.name + '</h1>');
     //element for img in modal
-    const imageElement = $('<img class="modal-img" style="width:50%">');
+    const imageElement = $('<img class="modal-img">');
     imageElement.attr('src', pokemon.imageUrl);
+    // const imageElement = $('<div class="d-flex justify-content-center">' + image + '</div>');
 
     //element for height in modal
     const heightElement = $('<p>' + 'Height : ' + pokemon.height + ' m' + '</p>');
